@@ -2,7 +2,10 @@
   "name": "thornburrow_dinner_collection",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "homepage": "https://lordsepticplier.github.io/Thornburrow_Dinner_Collection/",
   "scripts": {
+    "predeploy": "npx expo export -p web",
+    "deploy": "gh-pages -d dist",
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
