@@ -2,12 +2,11 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
 
-function AppButton({ title, onPress,  ...otherProps}) {
+function SearchAppButton({ title, onPress }) {
   return (
     <TouchableOpacity
       style={[styles.button]}
       onPress={onPress}
-      { ...otherProps}
     >
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
@@ -23,15 +22,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 5,
-    width: "100%",
+    width: "20%",
     marginVertical: 10,
   },
   text: {
     color:'#EFBF04',
-    fontSize: 18,
+    fontSize: 16,
     textTransform: "uppercase",
     fontWeight: "bold",
   },
 });
 
-export default AppButton;
+export default SearchAppButton;

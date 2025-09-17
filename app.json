@@ -3,7 +3,7 @@
     "name": "Thornburrow_Dinner_Collection",
     "slug": "Thornburrow_Dinner_Collection",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "thornburrowdinnercollection",
     "userInterfaceStyle": "automatic",
@@ -21,7 +21,8 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "publicPath": "./"
     },
     "plugins": [
       "expo-router",

@@ -1,13 +1,20 @@
-import { Tabs } from 'expo-router';
+import { Slot } from 'expo-router';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
-export default function Layout() {
-
+export default function RootLayout() {
   return (
-    <Tabs>
-      <Tabs.Screen name='schedule' options={{title: 'Schedule'}}/>
-      <Tabs.Screen name='recipes/index' options={{title: 'Recipes'}}/>
-      <Tabs.Screen name='add' options={{title: 'Add'}}/>
-      <Tabs.Screen name='edit' options={{title: 'Edit'}}/>
-    </Tabs>
+    <>
+      <View style={styles.container}>
+        <Slot />
+      </View>
+    </>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, // Ensures the View takes up the entire screen
+    backgroundColor: '#660033', // Your desired base background color
+  },
+});

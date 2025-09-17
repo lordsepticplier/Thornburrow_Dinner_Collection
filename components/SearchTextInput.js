@@ -1,19 +1,11 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet, TextInput, View } from "react-native";
 
 
 
-function AppTextInput({ icon, ...otherProps }) {
+function SearchAppTextInput({ icon, ...otherProps }) {
   return (
     <View style={styles.container}>
-      {icon && (
-        <MaterialCommunityIcons
-          name={icon}
-          size={20}
-          color='#EFBF04'
-          style={styles.icon}
-        />
-      )}
+      
       <TextInput style={{width:"100%", color:"#EFBF04", textAlign: 'center'}} {...otherProps}/>
     </View>
   );
@@ -24,7 +16,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#660033',
     borderRadius: 25,
     flexDirection: "row",
-    width: "100%",
+    width: "30%",
     padding: 7,
     marginVertical: 10,
     marginHorizontal:"5%",
@@ -36,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppTextInput;
+export default SearchAppTextInput;
