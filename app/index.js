@@ -1,3 +1,4 @@
+import NetInfo from '@react-native-community/netinfo'
 import { useRouter } from 'expo-router'
 import {
   createUserWithEmailAndPassword, getAuth,
@@ -5,14 +6,20 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup
 } from 'firebase/auth'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AppButton from '../components/appButton'
 import AppTextInput from '../components/appTextInput'
 import Screen from '../components/screen'
 import Title from '../components/Title'
 
 export default function Login() {
-  
+  const [isConnected, setIsConnected] = useState(null);
+  useEffect (() => {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      setIsConnected(state.isConnected);
+    });
+    return () => unsubscribe();
+  }, [])
   const router = useRouter();
   const Auth=getAuth();
   const [email, setEmail] = useState("")
@@ -30,7 +37,11 @@ export default function Login() {
     .then((userCredentials)=>{
       const user = userCredentials.user;
       console.log('User signin with email: ', user.email)
-      router.replace('Thornburrow_Dinner_Collection/schedule')
+      if (isConnected === true) {   
+        router.replace('Thornburrow_Dinner_Collection/schedule')
+      } if (isConnected === false){
+        router.replace('Thornburrow_Dinner_Collection/recipes')
+      }
     })
     .catch((error)=>alert(error));
   }
@@ -38,26 +49,30 @@ export default function Login() {
     const provider = new GithubAuthProvider();
     try {
       const result = await signInWithPopup(Auth, provider);
-      // User signed in successfully
       const user = result.user;
-      // You can access the GitHub access token if needed:
-      // const credential = GithubAuthProvider.credentialFromResult(result);
-      // const accessToken = credential.accessToken;
       console.log('GitHub user:', user);
       router.replace('Thornburrow_Dinner_Collection/schedule')
     } catch (error) {
       console.error('GitHub sign-in error:', error);
     };
-    
+  }
+  const offline = ()=>{
+      if (isConnected === false){
+        router.replace('Thornburrow_Dinner_Collection/recipes')
+      }
   }
   return (
     <Screen>
+      <Title>Thornburrow Dinner Collection​</Title>
       <Title>login</Title>
       <AppTextInput placeholder='Enter your email!' autoComplete="email" icon='email' value={email} onChangeText = {(text)=>setEmail(text)}/>
       <AppTextInput placeholder='Enter your password!' icon='lock' value={password} onChangeText = {(text)=>setPassword(text)} secureTextEntry/>
       <AppButton title="Github" onPress={signInWithGitHub}/>
       <AppButton title="Login" onPress={signIn}/>
       <AppButton title="Register" onPress={createUser}/>
+      {!isConnected && (
+        <AppButton disabled={isConnected} title="Offilne" onPress={offline}/>
+      )}
     </Screen>
   )
 }

@@ -7,7 +7,6 @@ import AppButton from '../../../components/appButton';
 import Title from '../../../components/Title';
 import { db } from '../../Firebase';
 
-
 export default function Recipes() {
   const [isConnected, setIsConnected] = useState(null);
   const [refresh, setRefresh] = useState(true);
@@ -45,4 +44,3 @@ export default function Recipes() {
     </View>
   )
 }
-

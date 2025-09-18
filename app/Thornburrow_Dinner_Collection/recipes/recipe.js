@@ -44,7 +44,6 @@ export default function Recipe() {
   const docID = doc(db, 'recipes', item )
   useEffect (() => {
       if (isConnected === true) {
-        
         const fetchId = async () => {
           const recipe = await getDoc(docID);
           setRecipe(recipe.data())

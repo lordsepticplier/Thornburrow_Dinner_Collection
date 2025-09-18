@@ -48,7 +48,8 @@ export default function Edit() {
     router.back();
   }
   return (
-    <Screen> <Title>Edit {recipe.name}</Title>
+    <Screen> 
+      <Title>Edit {recipe.name}</Title>
       <MiniTitle>Name:</MiniTitle>
       <AppTextInput placeholder='Enter the name!' icon='script-text' value={newName} onChangeText = {(text)=>setNewName(text)}/>
       <MiniTitle>Ingredients:</MiniTitle>
